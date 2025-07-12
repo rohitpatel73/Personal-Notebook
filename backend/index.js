@@ -1,19 +1,19 @@
-const connectToMongo = require('./db');
-const express = require('express')
-var cors = require('cors')
+import express from 'express';
+import cors from 'cors';
+import connectToMongo from './db.js';
+import authRoutes from './routes/auth.js';
+import notesRoutes from './routes/notes.js';
+
+const app = express();
+const port = 5000;
+
 connectToMongo();
-const app = express()
-const port = 5000
 
-app.use(cors())
-app.use(express.json())
-
-// Available Routes
-app.use('/api/auth', require('./routes/auth'))
-app.use('/api/notes', require('./routes/notes'))
-
-
+app.use(cors());
+app.use(express.json());
+app.use('/api/auth', authRoutes);
+app.use('/api/notes', notesRoutes);
 
 app.listen(port, () => {
-    console.log(`iNotebook backend listening at http://localhost:${port}`)
-})
+  console.log(`iNotebook backend listening at http://localhost:${port}`);
+});

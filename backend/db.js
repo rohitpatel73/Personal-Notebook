@@ -1,14 +1,16 @@
-const mongoose = require('mongoose');
-const mongoURI = "mongodb://localhost:27017/inotebook?directConnection=true"
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
+dotenv.config();
+const MONGO_URI = process.env.REACT_APP_MONGO_URI;
 
-// const connectToMongo = () => {
-//     mongoose.connect(mongoURI, ()=>{
-//         console.log("Connected to mongoose successfully")
-//     })
-// }
-async function connectToMongo() {
-    await mongoose.connect(mongoURI).then(()=> console.log("Connected to Mongo Successfully")).catch(err => console.log(err));
+const connectToMongo = async () => {
+  try {
+    await mongoose.connect(MONGO_URI);
+    console.log('Connected to Mongo Successfully');
+  } catch (err) {
+    console.error('Mongo connection failed:', err);
   }
+};
 
-module.exports = connectToMongo;
+export default connectToMongo;
