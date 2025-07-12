@@ -11,6 +11,9 @@ connectToMongo();
 
 app.use(cors());
 app.use(express.json());
+app.get('/rohit', (req, res) => {
+  res.send('Hello Rohit');
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', notesRoutes);
 

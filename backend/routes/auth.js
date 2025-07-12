@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import fetchUser from '../middleware/fetchuser.js';
 
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
 const router = express.Router();
 
 // Create User
